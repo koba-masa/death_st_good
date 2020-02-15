@@ -1,0 +1,17 @@
+div#goodArea {
+    vertical-align: middle;
+    width: 10rem;
+    background: linear-gradient(to right, #7cfc00, #ffffff);
+}
+
+img#goodMark {
+    transform: scale(-1 ,1);
+}
+
+div#goodCounter {
+    display: inline-block;
+}
+
+progress#goodTime.hide {
+    display: none;
+}
