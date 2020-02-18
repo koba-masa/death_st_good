@@ -1,15 +1,25 @@
-div#goodArea {
-    vertical-align: middle;
-    width: 10rem;
+html {
+  touch-action: manipulation;
+}
+
+div#goodMarkArea {
+    width: 50%;
+    margin: 0 auto;
     background: linear-gradient(to right, #7cfc00, #ffffff);
 }
 
 img#goodMark {
     transform: scale(-1 ,1);
+    display: inline-block;
 }
 
-div#goodCounter {
+span#goodCounter {
     display: inline-block;
+    font-size: 5rem;
+}
+
+progress#goodTime {
+    margin-left: 40%;
 }
 
 progress#goodTime.hide {

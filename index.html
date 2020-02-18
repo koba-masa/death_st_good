@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <title>デスストいいね</title>
-    <meta charset="utf-8">
+  <title>デスストいいね</title>
+  <meta charset="utf-8">
 
-    <script src="http://code.jquery.com/jquery.min.js"></script>
-    <script src="js/deathst.js"></script>
+  <link rel="shortcut icon" href="picture/favicon.ico">
+  <link rel="stylesheet" href="css/deathst.css" />
 
-    <link rel="stylesheet" href="css/deathst.css" />
+  <script src="http://code.jquery.com/jquery.min.js"></script>
+  <script src="js/deathst.js"></script>
+
 </head>
 <body>
-    <div id="goodArea">
-        <img id="goodMark" src="picture/good.png" onclick="updateTime();good();">
-        <div id="goodCounter">0</div>
-    </div>
-    <progress id="goodTime" class="hide" max="100" value="0"></progress>
-
+<main>
+  <div id="goodMarkArea">
+    <img id="goodMark" src="picture/good.png" onclick="updateTime();good();">
+    <span id="goodCounter">0</span>
+  </div>
+  <progress id="goodTime" class="hide" max="100" value="0"></progress>
+</main>
 </body>
 </html>
