@@ -3,21 +3,35 @@
 <head>
   <title>デスストいいね</title>
   <meta charset="utf-8">
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@hanbet0096" />
+  <meta property="og:url" content="https://koba-masa.com/DeathStGood" />
+  <meta property="og:title" content="デススト風いいねボタン" />
+  <meta property="og:description" content="DeathStrandingに登場する「いいね」を不完全ながら再現。" />
+  <meta property="og:image" content="https:///koba-masa.com/DeathStGood/picture/good.png" />
 
   <link rel="shortcut icon" href="picture/favicon.ico">
   <link rel="stylesheet" href="css/deathst.css" />
 
-  <script src="http://code.jquery.com/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery.min.js"></script>
   <script src="js/deathst.js"></script>
 
+  
 </head>
 <body>
 <main>
-  <div id="goodMarkArea">
-    <img id="goodMark" src="picture/good.png" onclick="updateTime();good();">
-    <span id="goodCounter">0</span>
+<!--
+  <div id="goodArea">
+    <div class=""></div>
+-->
+    <div id="goodMarkArea">
+      <img id="goodMark" src="picture/good.png" onclick="updateTime();good();">
+      <span id="goodCounter">0</span>
+    </div>
+    <progress id="goodTime" class="hide" max="100" value="0"></progress>
+<!--
   </div>
-  <progress id="goodTime" class="hide" max="100" value="0"></progress>
+-->
 </main>
 </body>
 </html>

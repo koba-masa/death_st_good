@@ -1,18 +1,27 @@
-const key = 'good_counter';
+const URL_SELECT = 'https://koba-masa.com/DeathStGood/select';
+const URL_UPDATE = 'https://koba-masa.com/DeathStGood/update';
+
+var upCounter = 0;
 
 $(window).on('load', function() {
-    var nowCounter = readCookie();
-    $('#goodCounter').text(nowCounter);
-    var progresMaxValue = setProgresMaxValue(nowCounter);
-    $('#goodTime').attr('max', progresMaxValue);
+    upCounter = 0;
+    var nowCounter = selectCounter();
+    setGoodCounter(nowCounter);
+    setProgresMaxValue(nowCounter);
 })
+
+function setGoodCounter(goodCounter) {
+    $('#goodCounter').text(goodCounter);
+}
 
 function good() {
     var nowCounter = parseInt($('#goodCounter').text(), 10);
     nowCounter = nowCounter + 1;
-    $('#goodCounter').text(nowCounter);
+    upCounter = upCounter + 1
+    setGoodCounter(nowCounter);
     $('#goodTime').attr('class', '');
     $('#goodMark').attr('onclick', 'good();');
+    return;
 }
 
 function updateTime() {
@@ -23,25 +32,21 @@ function updateTime() {
         setTimeout(updateTime, 100);
     } else {
         $('#goodMark').attr('onclick', '');
-        writeCookie($('#goodCounter').text());
+        updateCounter(upCounter);
     }
+    return;
 }
 
-function readCookie() {
-    var cookies = document.cookie.split(';');
-    var goodCounter = 0;
-    for (var i = 0; i < cookies.length; i++) {
-        var cookieArray = cookies[i].split('=');
-        if (cookieArray[0] == key) {
-            goodCounter = cookieArray[1];
-            break;
-        }
-    }
-    return parseInt(goodCounter, 10);
+function selectCounter() {
+    var result = sendForm(URL_SELECT, 'GET', {});
+    return parseInt(result['good_counter'], 10);
 }
 
-function writeCookie(goodCounter) {
-    document.cookie = key + '=' + encodeURIComponent(goodCounter);
+function updateCounter(goodCounter) {
+    sendForm(URL_UPDATE, 'GET', {'good_counter' : encodeURIComponent(goodCounter)});
+    var result = selectCounter();
+    setGoodCounter(result[key]);
+    return;
 }
 
 function setProgresMaxValue(nowCounter) {
@@ -53,5 +58,27 @@ function setProgresMaxValue(nowCounter) {
     } else {
         progresMaxValue = 200;
     }
-    return progresMaxValue;
+    $('#goodTime').attr('max', progresMaxValue);
+    return;
+}
+
+function sendForm(targetUrl, httpMethod,  sendData) {
+    var outputData;
+    $.ajax(
+        targetUrl,
+        {
+            type: httpMethod,
+            async: false,
+            dataType: 'json',
+            data: sendData,
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader(
+                    'content-type', 'application/x-www-form-urlencoded;charset=utf-8'
+                );
+            }
+        }).done(function(data, status, xhrtr){
+            outputData = data;
+        }
+    )
+    return outputData;
 }
