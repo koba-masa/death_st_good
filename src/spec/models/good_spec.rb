@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Good, type: :model do
+RSpec.describe Good do
   describe 'バリデーション' do
     context 'URL' do
       let(:data) { build(:good) }
