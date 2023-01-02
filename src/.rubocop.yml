@@ -52,3 +52,6 @@ Style/TrailingCommaInArrayLiteral:
 
 Style/TrailingCommaInHashLiteral:
   EnforcedStyleForMultiline: comma
+
+RSpec/ContextWording:
+  Enabled: false
