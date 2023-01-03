@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :good, class: 'Good' do
-    url { 'death_st_good.koba-masa.com' }
+    url { 'https://www.example.com/sample' }
     counter { 10 }
   end
 end
