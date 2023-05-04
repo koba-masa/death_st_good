@@ -11,7 +11,7 @@ RSpec.describe 'Goods' do
       it '200が返却されること' do
         get '/goods', params: { url: }
         expect(response).to have_http_status(:success)
-        body = JSON.parse(response.body)
+        body = response.parsed_body
         expect(body['id']).to eq before_data.id
         expect(body['url']).to eq url
         expect(body['counter']).to eq 10
@@ -40,7 +40,7 @@ RSpec.describe 'Goods' do
       it '200が返却されること' do
         patch "/goods/#{before_data.id}", params: { url:, counter: post_counter }
         expect(response).to have_http_status(:success)
-        body = JSON.parse(response.body)
+        body = response.parsed_body
         expect(body['id']).to eq before_data.id
         expect(body['url']).to eq url
         expect(body['counter']).to eq 25
