@@ -1,0 +1,28 @@
+name: Deploy
+
+on:
+  workflow_run:
+    workflows:
+      - ci
+    types:
+      - completed
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
+    steps:
+      - name: Deploy
+        run: |
+          ssh_identifier="identifier"
+          echo "${{ secrets.DEPLOY_SERVER_IDENTIFIER }}" > ${ssh_identifier}
+          chmod 600 ${ssh_identifier}
+          ssh ${{ secrets.DEPLOY_SERVER_USER }}@${{ secrets.DEPLOY_SERVER_HOST }} \
+              -p ${{ secrets.DEPLOY_SERVER_PORT }} \
+              -i ${ssh_identifier} \
+              -o StrictHostKeyChecking=no \
+              bash ${{ secrets.DEPLOY_SHELL_PATH }}/deploy.sh
+          rm ${ssh_identifier}
