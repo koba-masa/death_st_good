@@ -25,6 +25,7 @@ class GoodsController < ApplicationController
     end
     counter = params[:counter].to_i
     @good.increment(:counter, counter)
+    @good.save
   end
 
   private
