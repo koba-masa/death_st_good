@@ -9,10 +9,11 @@ services:
       APP_DATABASE_HOST: db
       APP_DATABASE_USERNAME: postgres
       APP_DATABASE_PASSWORD: postgres123
+      RAILS_RELATIVE_URL_ROOT: /death_st_good
     volumes:
       - .:/app
       - app_bundle:/usr/local/bundle
-    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    command: "bundle exec pumactl start -F config/puma/development.rb"
     ports:
       - 3000:3000
     depends_on:
