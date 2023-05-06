@@ -222,6 +222,7 @@ GEM
       rubocop (~> 1.33)
       rubocop-capybara (~> 2.17)
     ruby-progressbar (1.13.0)
+    sd_notify (0.1.1)
     thor (1.2.1)
     timeout (0.3.2)
     tzinfo (2.0.6)
@@ -253,6 +254,7 @@ DEPENDENCIES
   rubocop-performance
   rubocop-rails
   rubocop-rspec
+  sd_notify
   tzinfo-data
 
 RUBY VERSION
