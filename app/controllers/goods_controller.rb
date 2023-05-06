@@ -19,12 +19,13 @@ class GoodsController < ApplicationController
 
   def update
     @good = Good.find(params[:id])
-    unless params[:counter].present? && params[:counter] =~ /^[+]?\d+/
+    if params[:counter].blank? || params[:counter] =~ /^-\d+/
       render json: {}, status: :bad_request
       return
     end
     counter = params[:counter].to_i
     @good.increment(:counter, counter)
+    @good.save
   end
 
   private
