@@ -10,6 +10,7 @@ git fetch
 git pull
 
 bundle config set --local without 'test development'
+bundle install
 bundle exec rails db:migrate
 
 SOCKET_DIR=tmp/sockets
